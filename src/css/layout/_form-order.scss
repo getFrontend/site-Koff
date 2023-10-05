@@ -1,0 +1,96 @@
+.form-order {
+	display: grid;
+	gap: 16px;
+
+	@media (min-width: 580px) {
+		grid-template-columns: 230px auto;
+		grid-template-areas:
+			"subtitle subtitle"
+			"info info"
+			"delivery payment";
+	}
+
+	&__subtitle {
+		font-size: 16px;
+		font-weight: 400;
+
+		@media (min-width: 580px) {
+			grid-area: subtitle;
+		}
+	}
+
+	&__fieldset {
+		padding: 0;
+		margin: 0;
+		border: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		&_info {
+			@media (min-width: 580px) {
+				grid-area: info;
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		&_delivery {
+			@media (min-width: 580px) {
+				grid-area: delivery;
+			}
+		}
+
+		&_payment {
+			@media (min-width: 580px) {
+				grid-area: payment;
+			}
+		}
+	}
+
+	&__input {
+		border-radius: 4px;
+		background-color: #eeeff2;
+		padding: 0 14px;
+		width: 100%;
+		height: 38px;
+		border: none;
+
+		&::placeholder {
+			color: #969eae;
+		}
+	}
+
+	&__textarea-comment {
+		min-height: 120px;
+		padding: 12px 14px;
+		border-radius: 4px;
+		background-color: #eeeff2;
+		border: none;
+		resize: none;
+
+		&::placeholder {
+			color: #969eae;
+		}
+
+		@media (min-width: 580px) {
+			grid-column: span 2;
+		}
+	}
+
+	&__legend {
+		font-size: 16px;
+		margin-bottom: 12px;
+	}
+
+	&__label {
+		display: flex;
+		gap: 8px;
+	}
+
+	&__radio {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+	}
+}

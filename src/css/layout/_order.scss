@@ -1,0 +1,98 @@
+.order {
+  padding-top: 32px;
+  
+  @media (min-width: 580px) {
+    padding: 60px 29px 0 29px;
+  }
+
+  @media (min-width: 820px) {
+    padding-left: 149px;
+    padding-right: 149px;
+  }
+
+  @media (min-width: 1120px) {
+    padding-left: 304px;
+    padding-right: 304px;
+  }
+
+  &__container {
+    padding: 24px 16px;
+    border: 1px solid #EEEFF2;
+    border-radius: 16px;
+    overflow: hidden;
+    
+    @media (min-width: 580px) {
+      padding: 60px 151px;
+    }
+    @media (min-width: 820px) {
+      padding-right: 159px;
+      padding-left: 159px;
+    }
+    @media (min-width: 1120px) {
+      padding-right: 212px;
+      padding-left: 212px; 
+    }
+  }
+
+  &__info {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (min-width: 580px) {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 400;
+
+    @media (min-width: 580px) {
+      font-size: 20px;
+    }
+  }
+
+  &__fullprice {
+    font-size: 16px;
+
+    @media (min-width: 580px) {
+      font-size: 20px;
+    }
+  }
+
+  &__number {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 4px 8px;
+    border-radius: 32px;
+    background-color: #eeeff2;
+
+    @media (min-width: 580px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &__table {
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+
+  &__button {
+    width: 100%;
+    padding: 12px 24px;
+    border-radius: 32px;
+    border: 1px solid transparent;
+    background-color: #780096;
+    color: #fff;
+  }
+}

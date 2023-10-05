@@ -1,0 +1,21 @@
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__phone {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 10px;
+  }
+
+  // &__item {
+  // }
+
+  // &__link {
+  // }
+}
