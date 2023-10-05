@@ -12,4 +12,8 @@ Live demo: https://getfrontend.github.io/site-Koff/dist/
 * CSS Flexbox
 * CSS Grid
 * Fluid Typography
+<<<<<<< HEAD
 * Fluid Space
+=======
+* Fluid Space
+>>>>>>> eb43d8a231ee853416c3709346ef6eed8865e312
