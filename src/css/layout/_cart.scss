@@ -22,6 +22,7 @@
 
     @media (min-width: 1120px) {
       gap: 0 16px;
+      grid-template-columns: 832px auto;
       grid-template-areas:
         "title title"
         "products order"
@@ -52,6 +53,10 @@
 
     @media (min-width: 820px) {
       grid-area: products;
+    }
+    
+    @media (min-width: 1120px) {
+      max-width: 514px;
     }
   }
 
@@ -104,7 +109,7 @@
 
   &__product-price {
     grid-area: price;
-    align-self: center;
+    // align-self: center;
 
     @media (min-width: 580px) {
       padding-top: 12px;

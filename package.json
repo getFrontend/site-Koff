@@ -2,9 +2,8 @@
   "name": "koff",
   "version": "1.0.0",
   "description": "Online store with JS",
-  "main": "index.js",
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite --open  --host ",
     "build": "vite build",
     "preview": "vite preview"
   },
