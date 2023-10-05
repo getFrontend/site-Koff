@@ -1,7 +1,0 @@
-Проект интернет-магазина Koff, сделанному на марафоне: "Марафон — Интернет-магазин мебели Koff (02.10 — 15.10)"
-https://my.methed.ru/teach/control/stream/view/id/803994308
-
-Макет
-https://www.figma.com/file/A1mH3gV8rHib6L4921VesV/Koff-(marathon)
-
-В верстке использован подход Mobile-first

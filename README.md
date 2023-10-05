@@ -13,3 +13,4 @@ Website of online furniture store
 * CSS Grid
 * Fluid Typography
 * Fluid Space
+>>>>>>> eb43d8a231ee853416c3709346ef6eed8865e312
