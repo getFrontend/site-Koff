@@ -2,29 +2,33 @@
   padding-top: 32px;
   
   @media (min-width: 580px) {
-    padding: 60px 29px 0 29px;
+    padding-top: 60px;
+    // padding: 60px 29px 0 29px;
   }
 
   @media (min-width: 820px) {
-    padding-left: 149px;
-    padding-right: 149px;
+    // padding-left: 149px;
+    // padding-right: 149px;
   }
 
   @media (min-width: 1120px) {
-    padding-left: 304px;
-    padding-right: 304px;
+    // padding-left: 304px;
+    // padding-right: 304px;
   }
 
   &__container {
+    max-width: 320px;
     padding: 24px 16px;
     border: 1px solid #EEEFF2;
     border-radius: 16px;
     overflow: hidden;
     
     @media (min-width: 580px) {
+      max-width: 710px;
       padding: 60px 151px;
     }
     @media (min-width: 820px) {
+      max-width: 832px;
       padding-right: 159px;
       padding-left: 159px;
     }

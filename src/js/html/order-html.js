@@ -1,7 +1,7 @@
 export const orderHTML = `
                 <div class="order__info">
                     <h3 class="order__title">Заказ успешно размещен</h3>
-                    <p class="order__fullprice">20 000 ₽</p>
+                    <p class="order__fullprice">20&nbsp;000&nbsp;₽</p>
                 </div>
                 <p class="order__number">№43435</p>
                 <h4 class="order__subtitle">Данные доставки</h4>
