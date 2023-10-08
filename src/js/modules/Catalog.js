@@ -44,7 +44,7 @@ export class Catalog {
       link.classList.add('catalog__link');
       link.href = `/category?slug=${item}`;
       link.title = `${item}`;
-      link.textContent = `${item}`;
+      link.textContent = item;
 
       listItemElem.append(link);
 

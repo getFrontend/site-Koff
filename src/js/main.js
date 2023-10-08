@@ -49,11 +49,10 @@ const init = () => {
   new Main().mount();
   new Footer().mount();
 
-  api.getProductCategories().then((data) => {
+  api.getProductCategories().then(data => {
     new Catalog().mount(new Main().element, data);
     router.updatePageLinks();
   });
-
 
   productSlider();
 
@@ -62,10 +61,7 @@ const init = () => {
     .on(
       "/",
       async () => {
-
         const product = await api.getProducts();
-
-        // console.log("Product: ", product);
 
         new ProductList().mount(new Main().element, product, 'Интернет-магазин мебели Koff');
 
@@ -74,6 +70,7 @@ const init = () => {
       {
         leave(done) {
           new ProductList().unmount();
+          console.log("main page = leave")
           done();
         },
         already() {
@@ -84,6 +81,7 @@ const init = () => {
       "/category",
       async ({ params: { slug } }) => {
         const product = await api.getProducts();
+
         new ProductList().mount(new Main().element, product, slug);
         router.updatePageLinks();
       },
