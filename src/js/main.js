@@ -8,6 +8,7 @@ import { Order } from './modules/Order';
 import { ProductList } from './modules/productList';
 import { apiService } from './services/ApiService';
 import { Catalog } from './modules/Catalog';
+import { Page404 } from './modules/Page404';
 
 
 const productSlider = () => {
@@ -51,7 +52,7 @@ const init = () => {
   api.getProductCategories().then((data) => {
     new Catalog().mount(new Main().element, data);
     router.updatePageLinks();
-  })
+  });
 
 
   productSlider();
@@ -61,12 +62,14 @@ const init = () => {
     .on(
       "/",
       async () => {
+
         const product = await api.getProducts();
 
-        new ProductList().mount(new Main().element, product);
-        router.updatePageLinks();
+        // console.log("Product: ", product);
 
-        console.log('Main page');
+        new ProductList().mount(new Main().element, product, 'Интернет-магазин мебели Koff');
+
+        router.updatePageLinks();
       },
       {
         leave(done) {
@@ -118,18 +121,15 @@ const init = () => {
       console.log('order');
     })
     .notFound(() => {
-      console.log(404);
-      new Main().element.innerHTML = `
-        <h2>Страница не найдена...</h2>
-        <p>Через 5 секунд, вы будете перенаправлены на <a href="/">главную страницу</a></p>
-      `;
-
+      console.log("Message in console: Page ", 404);
+      new Page404().mount(new Main().element);
       setTimeout(() => {
         router.navigate('/');
       }, 5000);
     }, {
       leave(done) {
-        // new Main().unmount();
+        new Page404().unmount();
+        console.log("leave 404");
         done();
       }
     });
