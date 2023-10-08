@@ -1,6 +1,8 @@
 .card {
   position: relative;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   gap: 12px;
 
   @media(min-width: 580px) {
@@ -10,14 +12,31 @@
   // &__link {}
 
   &__image {
+    $imageHeight: 120;
+    $imageWidth: 140;
+    
     width: 100%;
-    object-fit: cover;
     border-radius: 16px;
+    object-fit: cover;
+    aspect-ratio: calc($imageWidth/20) / calc($imageHeight/20);
+
+    @media (min-width: 580px) {
+      $imageHeight: 200;
+      $imageWidth: 230;
+      aspect-ratio: calc($imageWidth/20) / calc($imageHeight/20);
+    }
+
+    @media (min-width: 820px) {
+      $imageHeight: 250;
+      $imageWidth: 302;
+      aspect-ratio: calc($imageWidth/20) / calc($imageHeight/20);
+    }
   }
 
   &__info {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     gap: 4px;
 
     @media(min-width: 580px) {

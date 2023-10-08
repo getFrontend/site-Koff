@@ -1,1 +1,1 @@
-export const getHTML = (html) => html;
+export const getHTML = html => html;
