@@ -1,18 +1,19 @@
 export class LocalStorageService {
-  constructor(key, value) {
-    this.key = key;
-    this.value = value;
+  constructor() {
+    this.localStorage = localStorage;
+    this.key = localStorage.key;
+    this.value = localStorage.value;
   }
 
   set(key, value) {
-    return localStorage.setItem(key, value);
+    return this.localStorage.setItem(key, value);
   }
 
   get(key) {
-    localStorage.getItem(key);
+    return this.localStorage.getItem(key);
   }
 
   delete(key) {
-    localStorage.removeItem(key);
+    return this.localStorage.removeItem(key);
   }
 }
