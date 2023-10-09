@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { API_URL, limitDefault } from "../const";
-import { LocalStorageService } from './LocalStorage';
+import { LocalStorageService } from './LocalStorageService';
 
 export class apiService {
   #apiURL = API_URL;
 
   constructor() {
     this.storage = new LocalStorageService();
-    this.accessKey = this.storage.get('acessKey');
+    this.accessKey = this.storage.get('accessKey');
 
     console.log('accessKey:', this.accessKey);
   }
