@@ -13,3 +13,9 @@ Website of online furniture store
 * CSS Grid
 * Fluid Typography
 * Fluid Space
+
+
+### Js modules
+* Navigo (routing, hooks)
+* Axios
+* Swiper
