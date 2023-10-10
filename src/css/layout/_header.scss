@@ -97,9 +97,17 @@
         gap: 4px;
         align-items: end;
 
+        svg {
+            fill: #fff;
+        }
+
         &:hover,
         &:active {
             color: #780096;
+
+            svg {
+                fill: #9200B7;
+            }
         }
 
         &:focus-visible {

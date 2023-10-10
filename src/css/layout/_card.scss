@@ -79,7 +79,13 @@
 
     &:hover {
       background-color: #9200B7;
+      border-color: #9200B7;
       color: #fff;
+    }
+    &:active {
+      color: #c0f;
+      background-color: transparent;
+      border-color: #c0f;
     }
   }
 
@@ -88,14 +94,23 @@
     top: 12px;
     right: 12px;
 
-    & svg {
+    svg {
       fill: #fff;
     }
 
-    & svg:active,
-    & svg:hover {
-      fill: #9200B7;
+    &:hover,
+    &_active {
+      svg {
+        fill: #9200B7;
+      }
       color: #9200B7;
     }
+
+    &:active {
+      svg {
+        fill: #c0f;
+      }
+      color: #c0f;
+    }
   }
-}
+} 

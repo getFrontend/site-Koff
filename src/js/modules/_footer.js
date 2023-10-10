@@ -1,7 +1,7 @@
 import { getHTML } from "../helpers/getHTML";
-import { getLogo } from "../helpers/getLogo";
 import { footerHTML } from "../html/footer-html";
 import { addContainer } from "../helpers/addContainer";
+import { Logo } from "../features/Logo";
 
 
 export class Footer {
@@ -24,7 +24,7 @@ export class Footer {
             return;
         }
 
-        const logo = getLogo('footer__link-logo', 'footer__logo');
+        const logo = new Logo('footer').create();
 
         this.containerElement.append(logo);
 
