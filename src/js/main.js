@@ -9,6 +9,8 @@ import { ProductList } from './modules/productList';
 import { apiService } from './services/ApiService';
 import { Catalog } from './modules/Catalog';
 import { Page404 } from './modules/Page404';
+import { FavouriteService } from './services/LocalStorageService';
+import { limitDefault } from './const';
 
 
 const productSlider = () => {
@@ -43,6 +45,7 @@ const productSlider = () => {
 
 const init = () => {
   const api = new apiService();
+  // console.log("API=", api.getProducts())
   const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
 
   new Header().mount();
@@ -94,9 +97,10 @@ const init = () => {
     .on(
       "/favourite",
       async () => {
-        const product = await api.getProducts();
+        const list = new FavouriteService().get();
+        const product = await api.getProducts(1, limitDefault, list);
 
-        new ProductList().mount(new Main().element, product, 'Избранное');
+        new ProductList().mount(new Main().element, product.data, 'Избранное');
         router.updatePageLinks();
       },
       {

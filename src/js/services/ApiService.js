@@ -38,6 +38,8 @@ export class apiService {
         params
       });
 
+      // console.log("response.data =", response.data);
+
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -51,12 +53,12 @@ export class apiService {
     }
   }
 
-  async getProducts(page = 1, limit = limitDefault, list, category, search) {
+  async getProducts(page = 1, limit = limitDefault, list = [], category, search) {
     return await this.getData('api/products', {
       page,
       limit,
       category,
-      list,
+      list: list.join(","),
       search,
     });
   }
