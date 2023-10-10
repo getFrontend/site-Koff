@@ -97,8 +97,17 @@ const init = () => {
     .on(
       "/favourite",
       async () => {
-        const list = new FavouriteService().get();
-        const product = await api.getProducts(1, limitDefault, list);
+        const favourite = new FavouriteService().get();
+        const product = await api.getProducts(1, limitDefault, favourite);
+
+        if (favourite.length < 1) {
+          new ProductList().mount(new Main().element, product.data, 'В избранном пока пусто');
+          setTimeout(() => {
+            router.navigate('/');
+          }, 5000);
+          return;
+        }
+
 
         new ProductList().mount(new Main().element, product.data, 'Избранное');
         router.updatePageLinks();
