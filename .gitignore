@@ -22,5 +22,6 @@ dist-ssr
 *.sln
 *.sw?
 
-my-descriprtion.txt
+#My files
+/my-descriprtion.txt
 *.zip
