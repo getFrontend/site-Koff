@@ -10,7 +10,8 @@ import { apiService } from './services/ApiService';
 import { Catalog } from './modules/Catalog';
 import { Page404 } from './modules/Page404';
 import { FavouriteService } from './services/LocalStorageService';
-import { limitDefault } from './const';
+import { Pagination } from './features/Pagination';
+
 
 
 const productSlider = () => {
@@ -64,9 +65,9 @@ const init = () => {
     .on(
       "/",
       async () => {
-        const product = await api.getProducts();
+        const products = await api.getProducts();
 
-        new ProductList().mount(new Main().element, product, 'Интернет-магазин мебели Koff');
+        new ProductList().mount(new Main().element, products, 'Интернет-магазин мебели Koff');
 
         router.updatePageLinks();
       },
@@ -76,16 +77,25 @@ const init = () => {
           console.log("main page = leave")
           done();
         },
-        already() {
-          console.log("already");
+        already(match) {
+          match.route.handler(match);
         }
       })
     .on(
       "/category",
-      async ({ params: { slug } }) => {
-        const product = await api.getProducts();
+      async ({ params: { slug, page } }) => {
+        const { data: products, pagination } = await api.getProducts({ 
+          category: slug,
+          page: page || 1,
+        });
+        console.log('pagination', pagination);
 
-        new ProductList().mount(new Main().element, product, slug);
+        new ProductList().mount(new Main().element, products, slug);
+
+        new Pagination()
+          .mount(new ProductList().containerElement)
+          .update(pagination);
+
         router.updatePageLinks();
       },
       {
@@ -98,24 +108,27 @@ const init = () => {
       "/favourite",
       async () => {
         const favourite = new FavouriteService().get();
-        const product = await api.getProducts(1, limitDefault, favourite);
+        const { data: products } = await api.getProducts({ list: favourite.join(',') });
+
+        new ProductList().mount(new Main().element, products, 'Избранное',
+          'В избранном пока пусто, через 5 секунд вы вновь на главной странице.');
+        router.updatePageLinks();
 
         if (favourite.length < 1) {
-          new ProductList().mount(new Main().element, product.data, 'В избранном пока пусто');
           setTimeout(() => {
             router.navigate('/');
           }, 5000);
           return;
         }
 
-
-        new ProductList().mount(new Main().element, product.data, 'Избранное');
-        router.updatePageLinks();
       },
       {
         leave(done) {
           new ProductList().unmount();
           done();
+        },
+        already(match) {
+          match.route.handler(match);
         }
       })
     .on("/search", () => {

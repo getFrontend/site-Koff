@@ -40,8 +40,11 @@
   }
 
   &__info {
-    font-size: 12px;
-    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    // font-size: 12px;
+    // font-weight: 400;
   }
 
   // &__info-current {

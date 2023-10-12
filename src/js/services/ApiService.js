@@ -53,14 +53,8 @@ export class apiService {
     }
   }
 
-  async getProducts(page = 1, limit = limitDefault, list = [], category, search) {
-    return await this.getData('api/products', {
-      page,
-      limit,
-      category,
-      list: list.join(","),
-      search,
-    });
+  async getProducts(params) {
+    return await this.getData('api/products', params);
   }
 
   async getProductCategories() {
