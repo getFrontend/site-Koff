@@ -12,35 +12,9 @@ import { Page404 } from './modules/Page404';
 import { FavouriteService } from './services/LocalStorageService';
 import { Pagination } from './features/Pagination';
 import { BreadCrumbs } from './features/BreadCrumbs';
+import { ProductCard } from './modules/ProductCard';
+import { productSlider } from './features/ProductSlider';
 
-const productSlider = () => {
-  Promise.all([
-    import("swiper/modules"),
-    import("swiper"),
-    import("swiper/css"),
-    import("swiper/css/navigation")
-  ]).then(([{ Navigation, Thumbs }, Swiper]) => {
-    const swiperThumbnails = new Swiper.default('.product__slider-thumbnails', {
-      spaceBetween: 10,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesProgress: true,
-    });
-
-    const swiperGallery = new Swiper.default(".product__slider-main", {
-      spaceBetween: 10,
-      navigation: {
-        nextEl: ".product__slider-controls_next",
-        prevEl: ".product__slider-controls_prev",
-      },
-      modules: [Navigation, Thumbs],
-      thumbs: {
-        swiper: swiperThumbnails,
-      },
-    });
-
-  });
-};
 
 export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
 
@@ -52,11 +26,8 @@ const init = () => {
   new Footer().mount();
 
 
-  productSlider();
-
-
   router
-    .on(
+    .on(// Main Page
       "/",
       async () => {
         new Catalog().mount(new Main().element);
@@ -66,21 +37,19 @@ const init = () => {
           products,
           'Интернет-магазин мебели Koff'
         );
-
         router.updatePageLinks();
       },
       {
         leave(done) {
-          new ProductList().unmount();
           new Catalog().unmount();
-          // console.log("main page = leave");
+          new ProductList().unmount();
           done();
         },
         already(match) {
           match.route.handler(match);
         }
       })
-    .on(
+    .on(// Category page
       "/category",
       async ({ params: { slug, page = 1 } }) => {
         new Catalog().mount(new Main().element);
@@ -105,7 +74,7 @@ const init = () => {
           done();
         }
       })
-    .on(
+    .on(// Favourite page
       "/favourite",
       async ({ params }) => {
         new Catalog().mount(new Main().element);
@@ -122,7 +91,7 @@ const init = () => {
           'В избранном пока пусто, через 5 секунд вы вновь на главной странице.'
         );
         new Pagination().mount(new ProductList().containerElement).update(pagination);
-        
+
         router.updatePageLinks();
 
         if (favourite.length < 1) {
@@ -144,32 +113,64 @@ const init = () => {
           match.route.handler(match);
         }
       })
-    .on("/search", () => {
-      console.log('search');
-    })
-    .on("/product/:id", (obj) => {
-      // console.log('obj: ', obj);
-    })
-    .on("/cart", () => {
-      console.log('cart');
-    })
-    .on("/order", () => {
-      new Order().mount(new Main().element);
-      console.log('order');
-    })
-    .notFound(() => {
-      console.log("Message in console: Page ", 404);
-      new Page404().mount(new Main().element);
-      setTimeout(() => {
-        router.navigate('/');
-      }, 5000);
-    }, {
+    .on(// Search page
+      "/search",
+      () => {
+        console.log('search');
+      })
+    .on(// Product page with gallery
+      "/product/:id",
+      async (obj) => {
+        new Catalog().mount(new Main().element);
+        const data = await api.getProductById(obj.data.id);
+        // console.log('Data: ', data);
+        new BreadCrumbs().mount(new Main().element, [
+          {
+            text: data.category,
+            href: `/category?slug=${data.category}`
+          },
+          {
+            text: data.name,
+          }
+        ]);
+        new ProductCard().mount(new Main().element, data);
+
+        productSlider();
+        router.updatePageLinks();
+      },
+      {
+        leave(done) {
+          new Catalog().unmount();
+          new BreadCrumbs().unmount();
+          new ProductCard().unmount();
+          done();
+        }
+      })
+    .on(// Cart page
+      "/cart", () => {
+        console.log('cart');
+      })
+    .on(// Order page
+      "/order", () => {
+        new Order().mount(new Main().element);
+        console.log('order');
+      })
+    .notFound(
+      // Page 404
+      () => {
+        console.log("Message in console: Page ", 404);
+        new Page404().mount(new Main().element);
+        setTimeout(() => {
+          router.navigate('/');
+        }, 5000);
+      }, {
       leave(done) {
         new Page404().unmount();
         console.log("leave 404");
         done();
       }
-    });
+    }
+    );
 
   router.resolve();
 

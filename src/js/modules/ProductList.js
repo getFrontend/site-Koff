@@ -11,7 +11,7 @@ export class ProductList {
       this.element.classList.add('goods');
       this.containerElement = addContainer(this.element, 'goods__container');
       this.isMounted = false;
-      this.addEvents();
+      // this.addEvents();
     }
 
     return ProductList.instance;

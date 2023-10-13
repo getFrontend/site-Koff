@@ -204,5 +204,24 @@
   &__buttons-favourite {
     width: 16px;
     height: 16px;
+
+    svg {
+      fill: #fff;
+    }
+
+    &:hover,
+    &_active {
+      svg {
+        fill: #9200B7;
+      }
+      color: #9200B7;
+    }
+
+    &:active {
+      svg {
+        fill: #c0f;
+      }
+      color: #c0f;
+    }
   }
 }
