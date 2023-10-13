@@ -122,6 +122,7 @@ const init = () => {
           'В избранном пока пусто, через 5 секунд вы вновь на главной странице.'
         );
         new Pagination().mount(new ProductList().containerElement).update(pagination);
+        
         router.updatePageLinks();
 
         if (favourite.length < 1) {
