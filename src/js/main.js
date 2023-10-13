@@ -6,13 +6,12 @@ import { Main } from './modules/_main';
 import { Footer } from './modules/_footer';
 import { Order } from './modules/Order';
 import { ProductList } from './modules/productList';
-import { apiService } from './services/ApiService';
+import { ApiService } from './services/ApiService';
 import { Catalog } from './modules/Catalog';
 import { Page404 } from './modules/Page404';
 import { FavouriteService } from './services/LocalStorageService';
 import { Pagination } from './features/Pagination';
-
-
+import { BreadCrumbs } from './features/BreadCrumbs';
 
 const productSlider = () => {
   Promise.all([
@@ -43,20 +42,15 @@ const productSlider = () => {
   });
 };
 
+export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
 
 const init = () => {
-  const api = new apiService();
-  // console.log("API=", api.getProducts())
-  const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
+  const api = new ApiService();
 
   new Header().mount();
   new Main().mount();
   new Footer().mount();
 
-  api.getProductCategories().then(data => {
-    new Catalog().mount(new Main().element, data);
-    router.updatePageLinks();
-  });
 
   productSlider();
 
@@ -65,16 +59,21 @@ const init = () => {
     .on(
       "/",
       async () => {
+        new Catalog().mount(new Main().element);
         const products = await api.getProducts();
-
-        new ProductList().mount(new Main().element, products, 'Интернет-магазин мебели Koff');
+        new ProductList().mount(
+          new Main().element,
+          products,
+          'Интернет-магазин мебели Koff'
+        );
 
         router.updatePageLinks();
       },
       {
         leave(done) {
           new ProductList().unmount();
-          console.log("main page = leave")
+          new Catalog().unmount();
+          // console.log("main page = leave");
           done();
         },
         already(match) {
@@ -83,15 +82,15 @@ const init = () => {
       })
     .on(
       "/category",
-      async ({ params: { slug, page } }) => {
-        const { data: products, pagination } = await api.getProducts({ 
+      async ({ params: { slug, page = 1 } }) => {
+        new Catalog().mount(new Main().element);
+        const { data: products, pagination } = await api.getProducts({
           category: slug,
-          page: page || 1,
+          page: page,
         });
-        console.log('pagination', pagination);
 
+        new BreadCrumbs().mount(new Main().element, [{ text: slug }]);
         new ProductList().mount(new Main().element, products, slug);
-
         new Pagination()
           .mount(new ProductList().containerElement)
           .update(pagination);
@@ -100,18 +99,29 @@ const init = () => {
       },
       {
         leave(done) {
+          new BreadCrumbs().unmount();
           new ProductList().unmount();
+          new Catalog().unmount();
           done();
         }
       })
     .on(
       "/favourite",
-      async () => {
+      async ({ params }) => {
+        new Catalog().mount(new Main().element);
         const favourite = new FavouriteService().get();
-        const { data: products } = await api.getProducts({ list: favourite.join(',') });
-
-        new ProductList().mount(new Main().element, products, 'Избранное',
-          'В избранном пока пусто, через 5 секунд вы вновь на главной странице.');
+        const { data: products, pagination } = await api.getProducts({
+          list: favourite.join(','),
+          page: params?.page || 1,
+        });
+        new BreadCrumbs().mount(new Main().element, [{ text: 'Избранное' }]);
+        new ProductList().mount(
+          new Main().element,
+          products,
+          'Избранное',
+          'В избранном пока пусто, через 5 секунд вы вновь на главной странице.'
+        );
+        new Pagination().mount(new ProductList().containerElement).update(pagination);
         router.updatePageLinks();
 
         if (favourite.length < 1) {
@@ -124,7 +134,9 @@ const init = () => {
       },
       {
         leave(done) {
+          new BreadCrumbs().unmount();
           new ProductList().unmount();
+          new Catalog().unmount();
           done();
         },
         already(match) {

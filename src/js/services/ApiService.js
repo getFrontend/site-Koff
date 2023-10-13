@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL, limitDefault } from "../const";
 import { AccessKeyService } from './LocalStorageService';
 
-export class apiService {
+export class ApiService {
   #apiURL = API_URL;
 
   constructor() {

@@ -1,7 +1,7 @@
 import { addContainer } from "../helpers/addContainer";
+import { ApiService } from "../services/ApiService";
 
 export class Catalog {
-
   static instance = null;
 
   constructor() {
@@ -16,13 +16,21 @@ export class Catalog {
     return Catalog.instance;
   }
 
-  mount(parent, data) {
+  async getData() {
+    this.catalogData = await new ApiService().getProductCategories();
+  }
+
+  async mount(parent) {
     if (this.isMounted) {
       return;
     }
 
-    this.renderListElem(data);
-
+    if (!this.catalogData) {
+      await this.getData();
+      this.renderListElem(this.catalogData);
+      console.log('bla bla bla');
+    }
+    
     parent.prepend(this.element);
     this.isMounted = true;
   }

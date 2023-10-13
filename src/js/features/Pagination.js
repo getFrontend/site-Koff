@@ -111,9 +111,11 @@ export class Pagination {
     }
 
     this.paginationCurrent.textContent =
-      width < totalProducts
-        ? width
-        : width - limit + (totalProducts % limit);
+      totalProducts === limit
+        ? totalProducts
+        : width < totalProducts
+          ? width
+          : width - limit + (totalProducts % limit);
 
     this.paginationTotal.textContent = totalProducts;
 
