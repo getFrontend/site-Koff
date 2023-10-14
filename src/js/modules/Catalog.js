@@ -28,9 +28,8 @@ export class Catalog {
     if (!this.catalogData) {
       await this.getData();
       this.renderListElem(this.catalogData);
-      console.log('bla bla bla');
     }
-    
+
     parent.prepend(this.element);
     this.isMounted = true;
   }

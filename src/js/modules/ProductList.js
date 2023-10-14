@@ -37,12 +37,7 @@ export class ProductList {
       `)
     }
 
-    if (this.isMounted) {
-      return;
-    }
-
     parent.append(this.element);
-    this.isMounted = true;
   }
 
   unmount() {

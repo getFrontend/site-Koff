@@ -1,6 +1,7 @@
 import { Logo } from "../features/Logo";
 import { likeSVG } from "../features/likeSVG";
 import { addContainer } from "../helpers/addContainer";
+import { router } from "../main";
 
 export class Header {
     static instance = null;
@@ -61,6 +62,12 @@ export class Header {
                 stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         `;
+
+        searchForm.addEventListener('submit', (event) => {
+            // Cancel page reload
+            event.preventDefault();
+            router.navigate(`/search?q=${input.value}`);
+        });
 
         searchForm.append(input, searchBtn);
         return searchForm;

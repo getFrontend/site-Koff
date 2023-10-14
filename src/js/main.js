@@ -21,10 +21,10 @@ export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
 const init = () => {
   const api = new ApiService();
 
+  // debugger;
   new Header().mount();
   new Main().mount();
   new Footer().mount();
-
 
   router
     .on(// Main Page
@@ -60,9 +60,12 @@ const init = () => {
 
         new BreadCrumbs().mount(new Main().element, [{ text: slug }]);
         new ProductList().mount(new Main().element, products, slug);
-        new Pagination()
-          .mount(new ProductList().containerElement)
-          .update(pagination);
+
+        if (pagination.totalProducts > pagination.limit) {
+          new Pagination()
+            .mount(new ProductList().containerElement)
+            .update(pagination);
+        }
 
         router.updatePageLinks();
       },
@@ -90,17 +93,15 @@ const init = () => {
           'Избранное',
           'В избранном пока пусто, через 5 секунд вы вновь на главной странице.'
         );
-        new Pagination().mount(new ProductList().containerElement).update(pagination);
 
-        router.updatePageLinks();
-
-        if (favourite.length < 1) {
+        if (favourite.length > pagination?.limit) {
+          new Pagination().mount(new ProductList().containerElement).update(pagination);
+          router.updatePageLinks();
+        } else if (favourite.length === 0) {
           setTimeout(() => {
             router.navigate('/');
           }, 5000);
-          return;
         }
-
       },
       {
         leave(done) {
@@ -115,8 +116,38 @@ const init = () => {
       })
     .on(// Search page
       "/search",
-      () => {
-        console.log('search');
+      async ({ params: { q } }) => {
+        new Catalog().mount(new Main().element);
+        const { data: products, pagination } = await api.getProducts({
+          q
+        });
+
+        new BreadCrumbs().mount(new Main().element, [{ text: 'Поиск' }]);
+        new ProductList()
+          .mount(new Main().element,
+            products,
+            `Поиск: ${q}`,
+            `Извините, но ничего не найдено по вашему запросу: "${q}"`
+          );
+
+        if (pagination.totalProducts > pagination.limit) {
+          new Pagination()
+            .mount(new ProductList().containerElement)
+            .update(pagination);
+        }
+
+        router.updatePageLinks();
+      },
+      {
+        leave(done) {
+          new BreadCrumbs().unmount();
+          new ProductList().unmount();
+          new Catalog().unmount();
+          done();
+        },
+        already(match) {
+          match.route.handler(match);
+        }
       })
     .on(// Product page with gallery
       "/product/:id",
