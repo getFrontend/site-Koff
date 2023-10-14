@@ -2,7 +2,8 @@
 Website of online furniture store
 
 [Live demo](https://getfrontend.github.io/site-Koff/app/)
-[Live demo (without JS rendering)](https://getfrontend.github.io/site-Koff/dist/)
+
+([Version without JS rendering](https://getfrontend.github.io/site-Koff/dist/))
 
 ## Built with:
 * Mobile-first workflow
