@@ -84,6 +84,11 @@ export class Cart {
 
     const count = this.cartData.products.length;
     const totalPrice = this.cartData.totalPrice;
+
+    if (totalPrice === 0) {
+      this.cartProducts.textContent = 'Корзина пуста. Пожалуйста, добавьте товар, чтобы оформить заказ.';
+    }
+
     this.cartCount.textContent = `
       ${count + `
         ${(count === 1) ? 'товар' : 'товара'}
@@ -101,8 +106,8 @@ export class Cart {
   renderProducts() {
     const cartProductsData = this.cartData.products;
 
-    const cartProducts = document.createElement('div');
-    cartProducts.classList.add('cart__products');
+    this.cartProducts = document.createElement('div');
+    this.cartProducts.classList.add('cart__products');
 
     const cartItems = cartProductsData.map((item) => {
       const cartProduct = document.createElement('li');
@@ -195,9 +200,9 @@ export class Cart {
       return cartProduct;
     });
 
-    cartProducts.append(...cartItems);
+    this.cartProducts.append(...cartItems);
 
-    this.containerElement.append(cartProducts);
+    this.containerElement.append(this.cartProducts);
   }
 
   renderPlace() {
