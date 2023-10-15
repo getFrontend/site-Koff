@@ -45,11 +45,11 @@ export class ApiService {
       if (error.response && error.response.status === 401) {
         this.accessKey = null;
         this.accesKeyService.delete();
-
         return this.getData(urlPathName, params);
-      } else {
-        console.log("Error: ", error);
+      } else if (error.response.status === 500) {
+        return this.getData(urlPathName, params);
       }
+      console.log("Error: ", error);
     }
   }
 
