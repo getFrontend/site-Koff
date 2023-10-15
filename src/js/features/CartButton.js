@@ -1,3 +1,4 @@
+import { Header } from "../modules/_header";
 import { ApiService } from "../services/ApiService";
 
 export class CartButton {
@@ -14,7 +15,8 @@ export class CartButton {
 
         button.addEventListener('click', () => {
             new ApiService().postProductToCart(id);
-            console.log('The item added to Cart')
+            console.log('The item added to Cart');
+            new Header().cartUpdate();
         })
 
         return button;

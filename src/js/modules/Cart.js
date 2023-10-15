@@ -2,6 +2,7 @@ import { API_URL } from "../const";
 import { addContainer } from "../helpers/addContainer";
 import { debounce } from "../helpers/debounce";
 import { ApiService } from "../services/ApiService";
+import { Header } from "./_header";
 
 export class Cart {
   static instance = null;
@@ -156,6 +157,7 @@ export class Cart {
 
           if (item.quantity === 0) {
             cartProduct.remove();
+            new Header().cartUpdate();
             this.debUpdateCart(item.id, item.quantity);
 
             return;

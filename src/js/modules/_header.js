@@ -2,6 +2,7 @@ import { Logo } from "../features/Logo";
 import { likeSVG } from "../features/likeSVG";
 import { addContainer } from "../helpers/addContainer";
 import { router } from "../main";
+import { ApiService } from "../services/ApiService";
 
 export class Header {
     static instance = null;
@@ -100,7 +101,8 @@ export class Header {
 
         const cartCountElements = document.createElement('span');
         cartCountElements.classList.add('header__count');
-        cartCountElements.textContent = "(0)";
+        // cartCountElements.textContent = "(0)";
+        this.cartUpdate();
 
         cartLink.append(cartText, cartCountElements);
         cartLink.insertAdjacentHTML('beforeend', `
@@ -129,5 +131,11 @@ export class Header {
 
     changeCount(countNumber) {
         this.cartCountElements.textContent = `(${countNumber})`;
+    }
+
+    async cartUpdate() {
+        const data = await new ApiService().getCart();
+        console.log('data.totalCount', data.products.length)
+        this.cartCountElements.textContent = `(${data.products.length})`;
     }
 }

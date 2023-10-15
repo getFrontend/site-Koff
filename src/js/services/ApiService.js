@@ -142,7 +142,6 @@ export class ApiService {
           },
         }
       );
-
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
