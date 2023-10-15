@@ -67,6 +67,7 @@ export class Header {
             // Cancel page reload
             event.preventDefault();
             router.navigate(`/search?q=${input.value}`);
+            searchForm.reset();
         });
 
         searchForm.append(input, searchBtn);
