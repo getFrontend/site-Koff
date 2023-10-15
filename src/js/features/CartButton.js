@@ -1,3 +1,5 @@
+import { ApiService } from "../services/ApiService";
+
 export class CartButton {
     constructor(className, text) {
         this.className = className;
@@ -11,7 +13,8 @@ export class CartButton {
         button.textContent = `${this.text}`;
 
         button.addEventListener('click', () => {
-            console.log('Korzina')
+            new ApiService().postProductToCart(id);
+            console.log('The item added to Cart')
         })
 
         return button;

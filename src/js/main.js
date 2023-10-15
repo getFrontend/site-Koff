@@ -14,6 +14,7 @@ import { Pagination } from './features/Pagination';
 import { BreadCrumbs } from './features/BreadCrumbs';
 import { ProductCard } from './modules/ProductCard';
 import { productSlider } from './features/ProductSlider';
+import { Cart } from './modules/Cart';
 
 
 export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
@@ -178,16 +179,31 @@ const init = () => {
         }
       })
     .on(// Cart page
-      "/cart", () => {
-        console.log('cart');
-      })
+      "/cart", async () => {
+        const cartItems = await api.getCart();
+        new Cart().mount(
+          new Main().element,
+          cartItems,
+          'Корзина',
+          'Корзина пока пуста, добавьте пожалуйста товары'
+        );
+
+        router.updatePageLinks();
+      }, {
+      leave(done) {
+        new Cart().unmount();
+        done();
+      },
+      already(match) {
+        match.route.handler(match);
+      }
+    })
     .on(// Order page
       "/order", () => {
         new Order().mount(new Main().element);
         console.log('order');
       })
-    .notFound(
-      // Page 404
+    .notFound(// Page 404
       () => {
         console.log("Message in console: Page ", 404);
         new Page404().mount(new Main().element);
