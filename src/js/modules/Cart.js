@@ -120,6 +120,11 @@ export class Cart {
       cartProductImg.src = `${API_URL}${item.images[0]}`;
       cartProductImg.alt = item.name;
 
+      const imgLink = document.createElement('a');
+      imgLink.title = item.name;
+      imgLink.href = `./product/${item.id}`;
+      imgLink.append(cartProductImg);
+
       const cartProductTitle = document.createElement('h3');
       cartProductTitle.classList.add('cart__product-title');
       cartProductTitle.textContent = item.name;
@@ -196,7 +201,7 @@ export class Cart {
         cartCountBtnPlus,
       );
       cartProduct.append(
-        cartProductImg,
+        imgLink,
         cartProductTitle,
         cartProductArticle,
         cartProductPrice,
