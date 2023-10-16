@@ -80,8 +80,11 @@
     }
   }
 
-  &__product-img {
+  &__product-link {
     grid-area: image;
+  }
+
+  &__product-img {
     border-radius: 16px;
   }
 

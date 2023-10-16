@@ -121,6 +121,7 @@ export class Cart {
       cartProductImg.alt = item.name;
 
       const imgLink = document.createElement('a');
+      imgLink.classList.add('cart__product-link');
       imgLink.title = item.name;
       imgLink.href = `/product/${item.id}`;
       imgLink.append(cartProductImg);
