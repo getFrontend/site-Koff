@@ -200,12 +200,12 @@ const init = () => {
       }
     })
     .on(// Order page
-      "/order/:id", ({ data: { id } }) => {
-        new Order().mount(new Main().element);
-        console.log(`order: ${id}`);
+      "/order/:id",
+      ({ data: { id } }) => {
 
         api.getOrder(id).then(data => {
           console.log(data);
+          new Order().mount(new Main().element, data);
         })
       }, {
       leave(done) {
