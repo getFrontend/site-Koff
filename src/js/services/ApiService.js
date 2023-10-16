@@ -123,7 +123,6 @@ export class ApiService {
     }
   }
 
-
   async getCart() {
     return await this.getData('api/cart');
   }
@@ -150,6 +149,36 @@ export class ApiService {
       }
       console.error(error);
     }
+  }
+
+  async postOrder(data) {
+    if (!this.accessKey) {
+      await this.getAccessKey();
+    }
+
+    try {
+      const response = await axios.post(
+        `${this.#apiURL}api/orders`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${this.accessKey}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        this.accessKey = null;
+        this.AccessKeyService.delete();
+      }
+      console.error(error);
+    }
+  }
+
+  async getOrder(id) {
+    return await this.getData(`api/orders/${id}`);
   }
 
 }

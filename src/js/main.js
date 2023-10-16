@@ -18,10 +18,9 @@ import { Cart } from './modules/Cart';
 
 
 export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
+export const api = new ApiService();
 
 const init = () => {
-  const api = new ApiService();
-
   // debugger;
   new Header().mount();
   new Main().mount();
@@ -53,7 +52,9 @@ const init = () => {
     .on(// Category page
       "/category",
       async ({ params: { slug, page = 1 } }) => {
-        new Catalog().mount(new Main().element);
+        (await new Catalog().mount(new Main().element))
+          .setActiveLink(slug);
+
         const { data: products, pagination } = await api.getProducts({
           category: slug,
           page: page,
@@ -71,10 +72,10 @@ const init = () => {
         router.updatePageLinks();
       },
       {
-        leave(done) {
+        async leave(done) {
           new BreadCrumbs().unmount();
           new ProductList().unmount();
-          new Catalog().unmount();
+          (await new Catalog().unmount()).setActiveLink();
           done();
         }
       })
@@ -199,10 +200,19 @@ const init = () => {
       }
     })
     .on(// Order page
-      "/order", () => {
+      "/order/:id", ({ data: { id } }) => {
         new Order().mount(new Main().element);
-        console.log('order');
-      })
+        console.log(`order: ${id}`);
+
+        api.getOrder(id).then(data => {
+          console.log(data);
+        })
+      }, {
+      leave(done) {
+        new Order().unmount();
+        done();
+      }
+    })
     .notFound(// Page 404
       () => {
         console.log("Message in console: Page ", 404);
@@ -220,6 +230,10 @@ const init = () => {
     );
 
   router.resolve();
+
+  api.getCart().then(data => {
+    new Header().changeCount(data.totalCount);
+  })
 
 };
 

@@ -102,7 +102,6 @@ export class Header {
         const cartCountElements = document.createElement('span');
         cartCountElements.classList.add('header__count');
         // cartCountElements.textContent = "(0)";
-        this.cartUpdate();
 
         cartLink.append(cartText, cartCountElements);
         cartLink.insertAdjacentHTML('beforeend', `
@@ -131,11 +130,5 @@ export class Header {
 
     changeCount(countNumber) {
         this.cartCountElements.textContent = `(${countNumber})`;
-    }
-
-    async cartUpdate() {
-        const data = await new ApiService().getCart();
-        console.log('data.totalCount', data.products.length)
-        this.cartCountElements.textContent = `(${data.products.length})`;
     }
 }

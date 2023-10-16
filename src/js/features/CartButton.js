@@ -13,10 +13,10 @@ export class CartButton {
         button.dataset.id = id;
         button.textContent = `${this.text}`;
 
-        button.addEventListener('click', () => {
-            new ApiService().postProductToCart(id);
+        button.addEventListener('click', async () => {
+            const { totalCount } = await new ApiService().postProductToCart(id);
             console.log('The item added to Cart');
-            new Header().cartUpdate();
+            new Header().changeCount(totalCount);
         })
 
         return button;
