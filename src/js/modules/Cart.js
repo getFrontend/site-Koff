@@ -122,7 +122,7 @@ export class Cart {
 
       const imgLink = document.createElement('a');
       imgLink.title = item.name;
-      imgLink.href = `./product/${item.id}`;
+      imgLink.href = `/product/${item.id}`;
       imgLink.append(cartProductImg);
 
       const cartProductTitle = document.createElement('h3');
