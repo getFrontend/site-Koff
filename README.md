@@ -3,8 +3,8 @@ Website of online furniture store
 
 ![](https://github.com/getFrontend/site-Koff/blob/main/koff-preview_1280x720.png?raw=true)
 
-* [Live demo](https://getfrontend.github.io/site-Koff/app/)
-* [Version without JS rendering](https://getfrontend.github.io/site-Koff/dist/)
+* [Live demo](https://koffshop.vercel.app/)
+* [Version without JS rendering](https://koffshop.vercel.app/app-no-render/)
 
 ## HTML & CSS:
 * Mobile-first workflow
