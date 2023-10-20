@@ -4,7 +4,7 @@ export default defineConfig({
     root: './src',
     base: './',
     build: {
-        outDir: './../app',
+        outDir: './../dist',
         emptyOutDir: true,
         rollupOptions: {
             input: {
