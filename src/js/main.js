@@ -5,7 +5,7 @@ import { Header } from './modules/_header';
 import { Main } from './modules/_main';
 import { Footer } from './modules/_footer';
 import { Order } from './modules/Order';
-import { ProductList } from './modules/productList';
+import { ProductList } from './modules/ProductList';
 import { ApiService } from './services/ApiService';
 import { Catalog } from './modules/Catalog';
 import { Page404 } from './modules/Page404';
