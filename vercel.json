@@ -1,8 +1,4 @@
 {
-  /*
-  * How to solve  error in Vercel
-  * https://stackoverflow.com/questions/76379501/how-to-solve-react-vite-404-error-on-vercel
-  */
   "rewrites": [
     {
       "source": "/(.*)",
