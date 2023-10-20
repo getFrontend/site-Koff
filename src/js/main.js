@@ -4,17 +4,17 @@ import Navigo from 'navigo';
 import { Header } from './modules/_header';
 import { Main } from './modules/_main';
 import { Footer } from './modules/_footer';
-import { ProductList } from './modules/ProductList';
 import { ApiService } from './services/ApiService';
-import { Catalog } from './modules/Catalog';
-import { Page404 } from './modules/Page404';
-import { Order } from './modules/Order';
 import { FavouriteService } from './services/LocalStorageService';
 import { Pagination } from './features/Pagination';
 import { BreadCrumbs } from './features/BreadCrumbs';
+import { Catalog } from './modules/Catalog';
+import { Page404 } from './modules/Page404';
 import { ProductCard } from './modules/ProductCard';
-import { productSlider } from './features/ProductSlider';
+import { ProductList } from './modules/ProductList';
+import { Order } from './modules/Order';
 import { Cart } from './modules/Cart';
+import { productSlider } from './features/ProductSlider';
 
 
 export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
