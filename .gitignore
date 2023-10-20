@@ -23,5 +23,6 @@ dist-ssr
 *.sw?
 
 #My files
+/vercel.json
 /my-description.txt
 *.zip
