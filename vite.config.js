@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
     root: './src',
-    base: 'https://getfrontend.github.io/site-Koff/app/',
     build: {
         outDir: './../app',
         emptyOutDir: true,
