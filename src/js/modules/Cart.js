@@ -410,7 +410,7 @@ export class Cart {
     cashInput.type = 'radio';
     cashInput.name = 'paymentType';
     cashInput.required = true;
-    cashInput.value = 'pickup';
+    cashInput.value = 'cash';
     cashInput.checked = true;
 
     cashLabel.append(cashInput, cashlabelText);
