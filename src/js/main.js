@@ -156,7 +156,6 @@ const init = () => {
       async (obj) => {
         new Catalog().mount(new Main().element);
         const data = await api.getProductById(obj.data.id);
-        // console.log('Data: ', data);
         new BreadCrumbs().mount(new Main().element, [
           {
             text: data.category,
@@ -204,7 +203,6 @@ const init = () => {
       ({ data: { id } }) => {
 
         api.getOrder(id).then(data => {
-          console.log(data);
           new Order().mount(new Main().element, data);
         })
       }, {
@@ -223,7 +221,6 @@ const init = () => {
       }, {
       leave(done) {
         new Page404().unmount();
-        console.log("leave 404");
         done();
       }
     }

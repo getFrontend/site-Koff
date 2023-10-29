@@ -50,9 +50,6 @@ export class Cart {
       );
     }
 
-    console.log(data);
-
-
     parent.append(this.element);
     this.isMounted = true;
   }
@@ -63,7 +60,6 @@ export class Cart {
   }
 
   updateCart(id, quantity) {
-    // console.log(id, quantity)
     if (quantity === 0) {
       new ApiService().removeProductFromCart(id);
       this.cartData.products = this.cartData.products.filter(

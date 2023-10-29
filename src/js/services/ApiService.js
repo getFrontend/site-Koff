@@ -8,8 +8,6 @@ export class ApiService {
   constructor() {
     this.accesKeyService = new AccessKeyService('accessKey');
     this.accessKey = this.accesKeyService.get();
-
-    console.log('accessKey:', this.accessKey);
   }
 
   async getAccessKey() {
@@ -37,8 +35,6 @@ export class ApiService {
         },
         params
       });
-
-      // console.log("response.data =", response.data);
 
       return response.data;
     } catch (error) {
