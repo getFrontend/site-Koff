@@ -21,7 +21,6 @@ export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
 export const api = new ApiService();
 
 const init = () => {
-  // debugger;
   new Header().mount();
   new Main().mount();
   new Footer().mount();

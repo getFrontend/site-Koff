@@ -9,7 +9,7 @@ export const cardHTML = `
                 <h3 class="card__item-title">
                     <a class="card__item-link" href="/product/1">Кресло с подлокотниками</a>
                 </h3>
-                <span class="card__item-price">5&nbsp;000&nbsp;₽</span>
+                <span class="card__item-price">5&nbsp;000&nbsp;₴</span>
             </div>
 
             <button class="card__button-cart">В корзину</button>

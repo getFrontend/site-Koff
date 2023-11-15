@@ -120,7 +120,7 @@ export class ProductCard {
 
     const productPrice = document.createElement('p');
     productPrice.classList.add('product__price');
-    productPrice.innerHTML = `${data.price.toLocaleString()}&nbsp;₽`;
+    productPrice.innerHTML = `${data.price.toLocaleString()}&nbsp;₴yyy`;
 
     const productArticle = document.createElement('p');
     productArticle.classList.add('product__article');

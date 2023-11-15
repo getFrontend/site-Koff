@@ -97,7 +97,7 @@ export class Cart {
     this.cartTotalPrice.innerHTML = `
       ${(totalPrice)
         .toLocaleString()}
-        &nbsp;₽
+        &nbsp;₴
     `;
   }
 
@@ -135,7 +135,7 @@ export class Cart {
       cartProductPrice.innerHTML = `
         ${(item.price * item.quantity)
           .toLocaleString()}
-          &nbsp;₽
+          &nbsp;₴
       `;
 
       const cartProductCount = document.createElement('div');
@@ -172,7 +172,7 @@ export class Cart {
           cartProductPrice.innerHTML = `
             ${(item.price * item.quantity)
               .toLocaleString()}
-              &nbsp;₽
+              &nbsp;₴
           `;
 
           this.debUpdateCart(item.id, item.quantity);
@@ -186,7 +186,7 @@ export class Cart {
         cartProductPrice.innerHTML = `
         ${(item.price * item.quantity)
             .toLocaleString()}
-          &nbsp;₽
+          &nbsp;₴
       `;
 
         this.debUpdateCart(item.id, item.quantity);
@@ -242,12 +242,12 @@ export class Cart {
     this.cartTotalPrice.innerHTML = `
       ${(totalPrice)
         .toLocaleString()}
-        &nbsp;₽
+        &nbsp;₴
     `;
 
     const cartaddressPrice = document.createElement('p');
     cartaddressPrice.classList.add('cart__order-delivery');
-    cartaddressPrice.textContent = 'Доставка 0 ₽';
+    cartaddressPrice.textContent = 'Доставка 0 ₴';
 
     const cartOrderBtn = document.createElement('button');
     cartOrderBtn.classList.add('cart__order-btn');

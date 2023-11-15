@@ -45,7 +45,7 @@ export class Order {
 
     const orderPrice = document.createElement('p');
     orderPrice.classList.add('order__fullprice');
-    orderPrice.innerHTML = `${Number(totalPrice).toLocaleString('ru-RU')}&nbsp;₽`;
+    orderPrice.innerHTML = `${Number(totalPrice).toLocaleString('ua-UA')}&nbsp;₴`;
 
     const orderNumber = document.createElement('p');
     orderNumber.classList.add('order__number');

@@ -42,7 +42,7 @@ export class Card {
 
         const cardPrice = document.createElement('span');
         cardPrice.classList.add('card__item-price');
-        cardPrice.innerHTML = `${this.price.toLocaleString('ru-RU')}&nbsp;₽`;
+        cardPrice.innerHTML = `${this.price.toLocaleString('ua-UA')}&nbsp;₴`;
 
         cardInfo.append(cardTitle, cardPrice);
 
