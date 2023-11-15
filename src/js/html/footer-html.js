@@ -45,11 +45,6 @@ export const footerHTML = `
 
             <ul class="footer__developer-list">
                 <li class="footer__developer-item">
-                    Designer:
-                    <a href="https://t.me/Mrshmallowww" class="footer__developer-link" target="_blank">Anastasia
-                        Ilina</a>
-                </li>
-                <li class="footer__developer-item">
                     Developer:
                     <a href="https://t.me/Vietn_am" class="footer__developer-link" target="_blank">Sergey Up</a>
                 </li>
