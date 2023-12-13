@@ -4,4 +4,3 @@ Allow: /*.css*
 Allow: /*.png*
 Allow: /*.svg*
 Allow: /index.html
-Disallow: /cgi-bin/
