@@ -15,7 +15,6 @@ import { ProductList } from './modules/ProductList';
 import { Order } from './modules/Order';
 import { Cart } from './modules/Cart';
 import { productSlider } from './features/productSlider';
-import { Robots } from './modules/Robots';
 
 
 export const router = new Navigo("/", { linksSelector: 'a[href^="/"]' });
