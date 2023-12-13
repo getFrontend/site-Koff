@@ -33,6 +33,11 @@ The Singleton Pattern limits the number of instances of a particular object to j
 * Axios
 * Swiper
 
+### PageSpeed Insights
+
+✅ [Mobile](https://pagespeed.web.dev/analysis/https-koffshop-vercel-app/rr3xbgvwhm?form_factor=mobile "Mobile"): 79 / 78 / 100 / 100
+✅ [Desktop](https://pagespeed.web.dev/analysis/https-koffshop-vercel-app/rr3xbgvwhm?form_factor=desktop "Desktop"): 100 / 77 / 95 / 100
+
 ### API
 * [https://koff-api.vercel.app/](https://gist.github.com/Quper24/63685a499e19e0e3c4a197fc564e0776)
 
