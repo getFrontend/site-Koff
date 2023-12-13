@@ -211,14 +211,6 @@ const init = () => {
         done();
       }
     })
-    .on(// Robots.txt
-      "robots",
-      () => {
-        const navigo = new Navigo("/", {});
-        const robotsTxtUrl = `${navigo.origin}robots.txt`;
-        console.log(robotsTxtUrl);
-        navigo.navigate(robotsTxtUrl);
-      })
     .notFound(// Page 404
       () => {
         console.log("Message in console: Page ", 404);
