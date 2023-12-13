@@ -36,6 +36,7 @@ The Singleton Pattern limits the number of instances of a particular object to j
 ### PageSpeed Insights
 
 ✅ [Mobile](https://pagespeed.web.dev/analysis/https-koffshop-vercel-app/rr3xbgvwhm?form_factor=mobile "Mobile"): 79 / 78 / 100 / 100
+
 ✅ [Desktop](https://pagespeed.web.dev/analysis/https-koffshop-vercel-app/rr3xbgvwhm?form_factor=desktop "Desktop"): 100 / 77 / 95 / 100
 
 ### API
