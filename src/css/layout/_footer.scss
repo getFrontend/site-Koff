@@ -13,7 +13,7 @@
 
     @media (min-width: 580px) {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: max-content auto;
       grid-template-areas:
         "logo contacts"
         "developers developers"
@@ -43,6 +43,7 @@
   &__contacts {
     @media (min-width: 580px) {
       grid-area: contacts;
+      justify-self: flex-end;
     }
   }
 
