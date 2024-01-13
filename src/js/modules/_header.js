@@ -49,7 +49,7 @@ export class Header {
         input.classList.add('header__input');
         input.type = 'search';
         input.name = 'search';
-        input.placeholder = "Ведите запрос";
+        input.placeholder = "Введите запрос";
 
         const searchBtn = document.createElement('button');
         searchBtn.classList.add('header__search-button');
